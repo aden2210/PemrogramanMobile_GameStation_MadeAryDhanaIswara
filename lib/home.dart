@@ -5,6 +5,7 @@ import 'package:game_station/gamelist.dart';
 import 'package:game_station/account.dart';
 import 'package:game_station/settingpage.dart';
 import 'package:game_station/about.dart';
+import 'package:game_station/ui/uipenjualan.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -129,14 +130,14 @@ class _HomeState extends State<Home> {
                       Icon(
                         Icons.gamepad_rounded,
                         color: Colors.red.shade900,
-                        size: 100,
+                        size: 50,
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 8),
                         child: Text(
                           "Game Console",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             fontWeight: FontWeight.w400,
                             color: Colors.blue.shade900,
                           ),
@@ -159,14 +160,14 @@ class _HomeState extends State<Home> {
                       Icon(
                         Icons.headset_mic_rounded,
                         color: Colors.yellowAccent.shade700,
-                        size: 100,
+                        size: 50,
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 8),
                         child: Text(
                           "Peripherals",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             fontWeight: FontWeight.w400,
                             color: Colors.blue.shade900,
                           ),
@@ -206,14 +207,44 @@ class _HomeState extends State<Home> {
                       Icon(
                         Icons.book_sharp,
                         color: Colors.greenAccent.shade400,
-                        size: 100,
+                        size: 50,
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 8),
                         child: Text(
                           " Game List",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.blue.shade900,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return uipenjualan();
+                    }));
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.shopping_bag_outlined,
+                        color: Colors.greenAccent.shade400,
+                        size: 50,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 8),
+                        child: Text(
+                          " Pre-Order",
+                          style: TextStyle(
+                            fontSize: 15,
                             fontWeight: FontWeight.w400,
                             color: Colors.blue.shade900,
                           ),
