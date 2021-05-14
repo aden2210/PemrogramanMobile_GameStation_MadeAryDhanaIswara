@@ -15,8 +15,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: new home.Home(),
+    return MaterialApp(
+      home: home.Home(),
     );
   }
 }

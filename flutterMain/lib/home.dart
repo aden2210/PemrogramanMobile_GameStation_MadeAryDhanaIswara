@@ -5,6 +5,7 @@ import 'package:game_station/gamelist.dart';
 import 'package:game_station/account.dart';
 import 'package:game_station/settingpage.dart';
 import 'package:game_station/about.dart';
+import 'package:game_station/uiapi.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -222,9 +223,41 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
+                 GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return uiApi();
+                    }));
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.shopping_bag_outlined,
+                        color: Colors.green.shade600,
+                        size: 50,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 8),
+                        child: Text(
+                          "Shopping",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.blue.shade900,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
+          // FutureBuilder(
+          //   future: builder)
         ],
       ),
     );
