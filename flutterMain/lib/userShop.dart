@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:game_station/product_detail_api.dart';
+import 'package:game_station/userDetailProduct.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:game_station/addProduct.dart';
-import 'package:game_station/editProduct.dart';
 
-class uiApi extends StatefulWidget {
+class userShop extends StatefulWidget {
   @override
-  _uiApiState createState() => _uiApiState();
+  _userShopState createState() => _userShopState();
 }
 
-class _uiApiState extends State<uiApi> {
-  final String url = 'http://10.0.2.2:8000/api/transaction/';
+class _userShopState extends State<userShop> {
+  final String url = 'http://10.0.2.2:8000/api/transaction';
 
   Future getTransaction() async {
     var response = await http.get(Uri.parse(url));
@@ -19,24 +17,9 @@ class _uiApiState extends State<uiApi> {
     return json.decode(response.body);
   }
 
-  Future deleteProduct(String productId) async {
-    String url = 'http://10.0.2.2:8000/api/transaction/' + productId;
-
-    var response = await http.delete(Uri.parse(url));
-    return json.decode(response.body);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return AddProduct();
-          }));
-        },
-        child: Icon(Icons.add),
-      ),
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
         title: Padding(
@@ -62,8 +45,8 @@ class _uiApiState extends State<uiApi> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ProductDetail(
-                                              product: snapshot.data['data']
+                                        builder: (context) => userDetailProduct(
+                                              userproduct: snapshot.data['data']
                                                   [index],
                                             )));
                               },
@@ -101,41 +84,6 @@ class _uiApiState extends State<uiApi> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Row(
-                                          children: [
-                                            GestureDetector(
-                                                onTap: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder:
-                                                              (context) =>
-                                                                  EditProduct(
-                                                                    product: snapshot
-                                                                            .data['data']
-                                                                        [index],
-                                                                  )));
-                                                },
-                                                child: Icon(Icons.mode_edit)),
-                                            GestureDetector(
-                                                onTap: () {
-                                                  deleteProduct(snapshot
-                                                          .data['data'][index]
-                                                              ['id']
-                                                          .toString())
-                                                      .then((value) {
-                                                    setState(() {});
-                                                    ;
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(SnackBar(
-                                                            content: Text(
-                                                                "Product Deleted")));
-                                                  });
-                                                },
-                                                child: Icon(Icons.delete)),
-                                          ],
-                                        ),
                                         Text(snapshot.data['data'][index]
                                                 ['price']
                                             .toString()),

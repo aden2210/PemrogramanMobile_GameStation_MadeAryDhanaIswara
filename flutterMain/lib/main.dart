@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import './home.dart' as home;
+import 'package:game_station/auth_service.dart';
+import 'package:provider/provider.dart';
+import 'package:game_station/wrapper.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(new MaterialApp(
-    home: new MyApp(),
-  ));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: home.Home(),
+    return StreamProvider.value(
+      value: AuthServices.firebaseUserStream,
+      child: MaterialApp(
+        home: Wrapper(),
+      ),
     );
   }
 }
